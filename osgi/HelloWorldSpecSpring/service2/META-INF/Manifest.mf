@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Hello Service Impl 2
+Bundle-SymbolicName: helloserviceimpl2
+Bundle-Version: 1.0.0
+Bundle-Activator: com.extensiblejava.hello.service2.impl.HelloServiceImpl
+Import-Package: org.osgi.framework, com.extensiblejava.hello.service
