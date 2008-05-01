@@ -29,7 +29,9 @@
 	</target>
 	
 	<target name="dist.service" depends="compile.service">
-		<jar jarfile="${bin}/service2.jar" basedir="${service.build}" manifest="${basedir}/META-INF/Manifest.mf"/>
+			<jar jarfile="${bin}/service2.jar" basedir="${service.build}" manifest="${basedir}/META-INF/Manifest.mf">
+				<fileset dir="${basedir}" excludes="build/** src/** build.xml"/>
+			</jar>
 	</target>
 		
 </project>
