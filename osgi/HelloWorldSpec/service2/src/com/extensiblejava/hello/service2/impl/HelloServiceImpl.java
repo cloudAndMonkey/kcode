@@ -1,14 +1,32 @@
-package com.extensiblejava.hello.service2.impl;
-import java.util.Properties;
-import com.extensiblejava.hello.service.HelloService;
+package com.extensiblejava.hello.service2.impl;
 
-public class HelloServiceImpl implements HelloService {
+ import java.util.Properties;
+import com.extensiblejava.hello.service.HelloService;
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceListener;
+import org.osgi.framework.ServiceEvent;
+import org.osgi.framework.ServiceRegistration;
+
+public class HelloServiceImpl implements HelloService, BundleActivator {
+
+	private ServiceRegistration registration;
+
+	public void start(BundleContext context) {
+		Properties props = new Properties();
+		props.put("Language", "English");
+		registration = context.registerService(HelloService.class.getName(), this, props);
+    }
+
+	public void stop(BundleContext context) {
+
+    }
 
 	public String sayHello() {
-		return "From the 2nd service - Hello OSGi Spring World!! ";
+		return "Service2 - Hello World!! ";
 	}
 
 	public String sayGoodbye() {
-		return "From the 2nd service - Goodbye OSGi Spring World!!";
+		return "Service2 - Goodbye World!!";
 	}
 }
