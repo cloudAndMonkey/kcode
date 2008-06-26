@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<ruleset name="nexsys-rules">
+  <description>
+  Rules to look for unused variables that might cause excessive GCs.
+  </description>
+
+  <!-- We are looking for excessive object creation. Local variables or members
+  	   that are never used are potential problem areas. -->
+  <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable"/>
+  <rule ref="rulesets/unusedcode.xml/UnusedPrivateField"/>
+
+</ruleset>
