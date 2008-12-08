@@ -123,6 +123,7 @@
 		</copy>
 		<javac srcdir="${buildsrc}" destdir="${build}">
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${buildsrc}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit1.jar"/>
@@ -138,6 +139,7 @@
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${buildstats}/audit1.ser" />
 			<classpath refid="cobertura.classpath" />			
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${cobertura.ins}/audit1.jar"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement path="${bindist}/audit1test.jar"/>				
@@ -194,6 +196,7 @@
 		</copy>
 		<javac srcdir="${buildsrc}" destdir="${build}">
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${buildsrc}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit2.jar"/>
@@ -209,6 +212,7 @@
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${buildstats}/audit2.ser" />
 			<classpath refid="cobertura.classpath" />
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${cobertura.ins}/audit2.jar"/>
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
@@ -257,6 +261,7 @@
 		</copy>
 		<javac srcdir="${buildsrc}" destdir="${build}">
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/financial.jar"/>
 			</classpath>
@@ -271,6 +276,7 @@
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${buildstats}/financial.ser" />
 			<classpath refid="cobertura.classpath" />
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${cobertura.ins}/financial.jar"/>
 				<pathelement path="${build}"/>
 			</classpath>
@@ -324,6 +330,7 @@
 		</copy>
 		<javac srcdir="${buildsrc}" destdir="${build}">
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/auditspec.jar"/>
 				<pathelement path="${bindist}/audit1.jar"/>
@@ -342,6 +349,7 @@
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${buildstats}/bill.ser" />
 			<classpath refid="cobertura.classpath" />
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${cobertura.ins}/bill.jar"/>
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
@@ -402,6 +410,7 @@
 		</copy>
 		<javac srcdir="${buildsrc}" destdir="${build}">
 			<classpath>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/financial.jar"/>
 				<pathelement location="${bindist}/bill.jar"/>
@@ -422,6 +431,7 @@
 			<classpath refid="cobertura.classpath" />
 			<classpath>
 				<pathelement path="${build}"/>
+				<pathelement path="${buildlib}/junit.jar"/>
 				<pathelement location="${cobertura.ins}/billpay.jar"/> 
 				<pathelement location="${bindist}/billpaytest.jar"/>
 				<pathelement location="${bindist}/auditspec.jar"/>
@@ -550,6 +560,13 @@
 	</target>
 	
 	<target name="jdepend" depends="pmd">
+		<taskdef name="jdepend" classname="org.apache.tools.ant.taskdefs.optional.jdepend.JDependTask">
+		 	<classpath>
+                <pathelement path="${buildlib}/ant-jdepend.jar"/>
+				<pathelement path="${buildlib}/jdepend.jar"/>
+            </classpath>
+		</taskdef>
+		
 		<jdepend format="xml" outputfile="${buildstats}/jdepend.xml">
 			<classespath>
 				<pathelement location="${classes}" />
