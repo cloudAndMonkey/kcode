@@ -1,99 +1,81 @@
 package com.extensiblejava.hello.web;
 
-import org.osgi.framework.*;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.handler.ResourceHandler;
-import org.mortbay.jetty.handler.ContextHandler;
-import org.mortbay.jetty.servlet.Context;
-import org.mortbay.jetty.servlet.DefaultServlet;
-import org.mortbay.jetty.servlet.ServletHolder;
-
-
+import java.util.Dictionary;
+import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
-import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.service.http.HttpContext;
+import org.osgi.service.http.HttpService;
+import org.ops4j.pax.web.service.WebContainer;
 
-public class Activator implements BundleActivator {
-	private Server server;
-	//private ServiceTracker httpServiceTracker;
+public final class Activator
+    implements BundleActivator
+{
 
-	public void start(BundleContext context) throws Exception {
-		server = new Server(8380);
-		Context root = new Context(server, "/", Context.SESSIONS);
-		root.addServlet(new ServletHolder(new HelloWorldServlet()), "/*");
-		//root.addServlet(new ServletHolder(new ResourceServlet(context.getBundle(), "a", "", "hello.html")), "/a");
-		root.addServlet(new ServletHolder(new ResourceServlet(context.getBundle(), "a", "", "")), "/a/*");
-		server.start();
-	}
+    /**
+     * HttpService reference.
+     */
+    private ServiceReference m_httpServiceRef;
 
-	public void stop(BundleContext context) throws Exception {
-		server.stop();
-	}
+    /**
+     * Called when the OSGi framework starts our bundle
+     */
+    public void start( BundleContext bc )
+        throws Exception
+    {
+        //m_httpServiceRef = bc.getServiceReference( HttpService.class.getName() );
+		m_httpServiceRef = bc.getServiceReference( WebContainer.class.getName() );
+        if( m_httpServiceRef != null )
+        {
+            //final HttpService httpService = (HttpService) bc.getService( m_httpServiceRef );
+			final WebContainer webContainer = (WebContainer) bc.getService( m_httpServiceRef );
+            if( webContainer != null )
+            {
+                // create a default context to share between registrations
+                final HttpContext httpContext = webContainer.createDefaultHttpContext();
+                // register the hello world servlet
+                final Dictionary initParams = new Hashtable();
+                initParams.put( "from", "HttpService" );
+                webContainer.registerServlet(
+                    "/",                           // alias
+                    new HelloWorldServlet(),  // registered servlet
+                    initParams,                                 // init params
+                    httpContext                                 // http context
+                );
+                /*httpService.registerServlet(
+                    "/",                            // alias
+                    new HelloWorldServlet(),   // registered servlet
+                    initParams,                     // init params
+                    httpContext                     // http context
+                );*/
+				//register JSP
+				webContainer.registerJsps(
+				     new String[]{ "/jsp/*" },    // url patterns
+				     httpContext                                 // http context
+				);
+				
+                // register html pages as resources
+                webContainer.registerResources(
+                    "/html",
+                    "/",
+                    httpContext
+                );
+            }
+        }
+    }
 
-	/*private class HttpServiceTracker extends ServiceTracker {
-
-		public HttpServiceTracker(BundleContext context) {
-			super(context, HttpService.class.getName(), null);
-		}
-
-		public Object addingService(ServiceReference reference) {
-			HttpService httpService = (HttpService) context.getService(reference);
-			try {
-				//httpService.registerResources("/hello.html", "/hello.html", null); //$NON-NLS-1$ //$NON-NLS-2$
-				//httpService.registerResources("/hello.jsp", "/hello.jsp", null); //$NON-NLS-1$ //$NON-NLS-2$
-				httpService.registerServlet("/helloworld", new HelloWorldServlet(), null, null); //$NON-NLS-1$
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return httpService;
-		}
-
-		public void removedService(ServiceReference reference, Object service) {
-			//HttpService httpService = (HttpService) service;
-			//httpService.unregister("/hello.html"); //$NON-NLS-1$
-			//httpService.unregister("/hello.jsp"); //$NON-NLS-1$
-			httpService.unregister("/helloworld"); //$NON-NLS-1$
-			super.removedService(reference, service);
-		}*/
+    /**
+     * Called when the OSGi framework stops our bundle
+     */
+    public void stop( BundleContext bc )
+        throws Exception
+    {
+        if( m_httpServiceRef != null )
+        {
+            bc.ungetService( m_httpServiceRef );
+            m_httpServiceRef = null;
+        }
+    }
 }
 
-/*private ServiceTracker httpServiceTracker;
-
-	public void start(BundleContext context) throws Exception {
-		httpServiceTracker = new HttpServiceTracker(context);
-		httpServiceTracker.open();
-	}
-
-	public void stop(BundleContext context) throws Exception {
-		httpServiceTracker.close();
-		httpServiceTracker = null;
-	}
-
-	private class HttpServiceTracker extends ServiceTracker {
-
-		public HttpServiceTracker(BundleContext context) {
-			super(context, HttpService.class.getName(), null);
-		}
-
-		public Object addingService(ServiceReference reference) {
-			HttpService httpService = (HttpService) context.getService(reference);
-			try {
-				httpService.registerResources("/hello.html", "/hello.html", null); //$NON-NLS-1$ //$NON-NLS-2$
-				httpService.registerResources("/hello.jsp", "/hello.jsp", null); //$NON-NLS-1$ //$NON-NLS-2$
-				httpService.registerServlet("/helloworld", new HelloWorldServlet(), null, null); //$NON-NLS-1$
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return httpService;
-		}
-
-		public void removedService(ServiceReference reference, Object service) {
-			HttpService httpService = (HttpService) service;
-			httpService.unregister("/hello.html"); //$NON-NLS-1$
-			httpService.unregister("/hello.jsp"); //$NON-NLS-1$
-			httpService.unregister("/helloworld"); //$NON-NLS-1$
-			super.removedService(reference, service);
-		}
-	}*/
