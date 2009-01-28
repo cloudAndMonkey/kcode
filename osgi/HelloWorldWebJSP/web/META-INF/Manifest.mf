@@ -11,4 +11,6 @@ Import-Package: javax.servlet,
  org.mortbay.jetty.servlet,
  org.mortbay.jetty.handler,
  org.osgi.framework;version="1.3.0",
- org.osgi.util.tracker;version="1.3.1"
+ org.osgi.util.tracker;version="1.3.1",
+ org.osgi.service.http,
+ org.ops4j.pax.web.service

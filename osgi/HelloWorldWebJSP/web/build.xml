@@ -25,6 +25,8 @@
 				<pathelement location="${lib}/jetty-6.1.7.jar"/>
 				<pathelement location="${lib}/jetty-util-6.1.7.jar"/>
 				<pathelement location="${lib}/felix.jar"/>
+				<pathelement location="${lib}/osgi.cmpn.jar"/>
+				<pathelement location="${lib}/pax-web-service-0.5.1.jar"/>
 			</classpath>
 		</javac>
 	</target>
@@ -32,7 +34,7 @@
 	<target name="dist.web" depends="compile.web">
 		<copy file="${basedir}/hello.html" todir="${web.build}"/>
 		<copy file="${basedir}/goodbye.html" todir="${web.build}"/>
-		<copy file="${basedir}/hello.jsp" todir="${web.build}"/>
+		<copy file="${basedir}/jsp/hello.jsp" todir="${web.build}/jsp"/>
 		<jar jarfile="${bin}/web.jar" basedir="${web.build}" manifest="${basedir}/META-INF/Manifest.mf"/>
 	</target>
 	
