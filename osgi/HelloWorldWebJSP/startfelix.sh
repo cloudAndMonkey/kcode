@@ -1,1 +1,1 @@
-java -Dfelix.config.properties=file:./config.properties -jar ../felix-1.4.0/bin/felix.jar
+java -Dfelix.config.properties=file:./config.properties -jar ../felix-1.4.1/bin/felix.jar
