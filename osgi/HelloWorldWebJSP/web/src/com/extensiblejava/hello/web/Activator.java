@@ -9,70 +9,32 @@ import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 import org.ops4j.pax.web.service.WebContainer;
 
-public final class Activator
-    implements BundleActivator
-{
+public final class Activator implements BundleActivator {
 
-    /**
-     * HttpService reference.
-     */
     private ServiceReference m_httpServiceRef;
 
-    /**
-     * Called when the OSGi framework starts our bundle
-     */
-    public void start( BundleContext bc )
-        throws Exception
-    {
-        //m_httpServiceRef = bc.getServiceReference( HttpService.class.getName() );
+    public void start( BundleContext bc ) throws Exception {
+       
 		m_httpServiceRef = bc.getServiceReference( WebContainer.class.getName() );
-        if( m_httpServiceRef != null )
-        {
-            //final HttpService httpService = (HttpService) bc.getService( m_httpServiceRef );
+        if( m_httpServiceRef != null ) {
 			final WebContainer webContainer = (WebContainer) bc.getService( m_httpServiceRef );
-            if( webContainer != null )
-            {
+            if( webContainer != null ) {
                 // create a default context to share between registrations
                 final HttpContext httpContext = webContainer.createDefaultHttpContext();
                 // register the hello world servlet
                 final Dictionary initParams = new Hashtable();
                 initParams.put( "from", "HttpService" );
-                webContainer.registerServlet(
-                    "/",                           // alias
-                    new HelloWorldServlet(),  // registered servlet
-                    initParams,                                 // init params
-                    httpContext                                 // http context
-                );
-                /*httpService.registerServlet(
-                    "/",                            // alias
-                    new HelloWorldServlet(),   // registered servlet
-                    initParams,                     // init params
-                    httpContext                     // http context
-                );*/
+                webContainer.registerServlet("/", new HelloWorldServlet(), initParams, httpContext);
 				//register JSP
-				webContainer.registerJsps(
-				     new String[]{ "/jsp/*" },    // url patterns
-				     httpContext                                 // http context
-				);
-				
+				webContainer.registerJsps(new String[]{ "/jsp/*" }, httpContext);	
                 // register html pages as resources
-                webContainer.registerResources(
-                    "/html",
-                    "/",
-                    httpContext
-                );
+                webContainer.registerResources("/html", "/", httpContext);
             }
         }
     }
 
-    /**
-     * Called when the OSGi framework stops our bundle
-     */
-    public void stop( BundleContext bc )
-        throws Exception
-    {
-        if( m_httpServiceRef != null )
-        {
+    public void stop( BundleContext bc ) throws Exception {
+        if( m_httpServiceRef != null ) {
             bc.ungetService( m_httpServiceRef );
             m_httpServiceRef = null;
         }
