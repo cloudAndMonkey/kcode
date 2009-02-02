@@ -24,8 +24,8 @@
 				<pathelement location="${lib}/servlet-api-2.5-6.1.7.jar"/>
 				<pathelement location="${lib}/jetty-6.1.7.jar"/>
 				<pathelement location="${lib}/jetty-util-6.1.7.jar"/>
-				<pathelement location="${lib}/felix.jar"/>
 				<pathelement location="${lib}/osgi.cmpn.jar"/>
+				<pathelement location="${lib}/osgi.core.jar"/>
 				<pathelement location="${lib}/pax-web-service-0.5.1.jar"/>
 			</classpath>
 		</javac>
