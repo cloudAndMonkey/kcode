@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Hello Service Consumer
+Bundle-Name: Hello World Web
 Bundle-SymbolicName: helloweb
 Bundle-Version: 1.0.0
 Bundle-Activator: com.extensiblejava.hello.web.Activator
