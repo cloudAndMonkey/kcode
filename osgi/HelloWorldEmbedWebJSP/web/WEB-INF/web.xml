@@ -11,6 +11,10 @@
   <servlet>
     <servlet-name>HelloWorldServlet</servlet-name>
     <servlet-class>com.extensiblejava.hello.web.HelloWorldServlet</servlet-class>
+	<init-param>
+	     <param-name>source</param-name>
+	     <param-value>web</param-value>
+	</init-param>
   </servlet>
 
   <servlet-mapping>
