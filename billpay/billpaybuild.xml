@@ -520,8 +520,8 @@
         <javancss srcdir="${javasrc}"
 			includes="**/*.java"
 			packageMetrics="true"
-			classMetrics="false"
-			functionMetrics="false"
+			classMetrics="true"
+			functionMetrics="true"
             generateReport="true"
             outputfile="${buildstats}/javancss.xml"
             format="xml"/>
