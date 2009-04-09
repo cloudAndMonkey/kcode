@@ -7,7 +7,7 @@ task :default => [:coverage]
 require 'rcov/rcovtask'
 Rcov::RcovTask.new(:coverage) do |t|
   t.test_files = FileList['test/AllTests.rb']
-  t.rcov_opts << "-I ./app:./test"
+  t.rcov_opts << "-I ./app" + File::PATH_SEPARATOR + "./test"
   t.output_dir = "coverageout"
 end
 
