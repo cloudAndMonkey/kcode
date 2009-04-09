@@ -1,0 +1,1 @@
+ruby -I c:\applications\ruby\Loan\app LoanTest.rb

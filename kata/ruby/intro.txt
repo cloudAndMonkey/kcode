@@ -1,0 +1,16 @@
+My Ruby Kata
+Most of what I read about Ruby emphasizes syntax, recipes, or tutorials showing how to get started with Ruby. I find most of these resources very useful. I've read the pickaxe book, have installed Ruby and quite a few gems (including Rails, of course), spent quite a bit of time playing with ruby at the interactive prompt, and have downloaded RadRails and developed a quick and simple Rails application. But after all that, I'm still left wondering about the Ruby environment. How are Ruby programs structured within the file system? How does Ruby find what it needs? What is the correct directory structure? How do I organize tests? How do I deploy? So I decided to embark on My Ruby Kata to further explore the world of Ruby development.
+
+What's a Kata?
+A kata is an exercise in Karate where you make small incremental improvements to form by repeating the form many times. In most sports, we call this practice, but Kata is a much cooler sounding word that practice, so I'll go with that. I typically use the Loan Payment Calculator Kata to practice with new technologies, such as Java (many years ago), REST based web services, and now Ruby. Part of why I like the Loan Calculator Kata is because it's exists at the right level of complexity for me when I want to experiment with something new. I am familar with the algorithm, and it's not so complex that I get taken away from my intent to learn a new technology. Nor is it so simple (at least for me) that I take little away from it. Typically, when I practice the Kata, I do so outside the confines of an Integrated Development Environment. This takes a little longer, but part of my goal in practicing the Kata is to understand a new technologies environmental issues. But this time, I've decided to track the ongoing status of my Kata, resulting in this, and future, blog entries.
+
+My environment
+Like I said above, I like my Kata to be done outside an IDE so I'm relying solely on a simple text editor, the file system, and Ruby (along with a few useful gems). I also wanted to develop a complete program through the whole lifecycle. This includes development, testing and deployment. So here's the steps:
+- Version 1 - Get my Loan Calculator working. Here, I'll setup the directory structure for the application and a single test, ensure the test can find the application they're testing, and create a batch file to execute the test.
+- Version 2 - I'll develop a test suite so that multiple tests can be invoked. I'll also add a few features to the application to make it a bit more interesting and feature rich.
+- Version 3 - I'll introduce a Rake build file
+- Version 4 - Develop a front end so that it can be invoked RESTfully.
+I'm sure there are many opinions of what constitutes a complete program. For purposes of this discussion, I consider it the following:
+- multiple source files
+- robust suite of unit tests
+- a build script

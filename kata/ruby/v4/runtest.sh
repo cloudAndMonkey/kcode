@@ -1,0 +1,1 @@
+ruby -I ./app:./test ./test/AllTests.rb

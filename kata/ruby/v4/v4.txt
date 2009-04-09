@@ -1,0 +1,11 @@
+So now it's time to take this little Loan program and make it web ready. I wanted to make it a web service, in a REST-ful sort of way. I was pretty sure I could use Rails and make that pretty easy, since Rails does a lot of the lifting. However, I'm also pretty stubborn and wanted to use core Ruby, so I decided to explore CGI.
+
+Having always had some degree of plubming provided for me in the J2EE world, I don't have much experience with CGI. So this is quite an adventure. When you know a little about something, it's pretty easy to pick up useful bits of information here and there that make sense. But when you're mostly clueless, it's tough to know if what you're looking at is even relevant. So that's where I'm at today. I have no idea how to web enable a Ruby app and read xml from an incoming request. So I'm going googling...
+
+Well this isn't getting any easier for me. I've experimented with WEBrick and have a servlet up and running. But it appears that if I use WEBrick, I can't just port the stuff over to Apache. I'd have to create an entirely new front end piece using CGI. Strange.
+
+http://coolnamehere.com/geekery/ruby/web/cgi.html
+
+http://www.hiveminds.co.uk/node/3094
+
+It's very tempting to run the changes in my server directly instead of run my rake file and executing my JUnits. I actually did this for a fair amount of time before I finally realized I was doing it. I have really strayed away from solid testing practices. In a statically typed language, I need to compile to deploy. Here I don't need to. I can just make the changes, and I'm ready to test in the browser.

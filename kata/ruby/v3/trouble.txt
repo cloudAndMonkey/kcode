@@ -1,0 +1,39 @@
+So the only real change I made was to introduce a rake file. Why did I want to use Rake when I was able to easily invoke the application from command line? I've practiced a variety of Continuous Integration strategies in the Java world for quite some time, and have found that an Automated and Repeatable build offers so many advantages. Here are two very good reasons.:
+- It's a cross platform build script. 
+- It can be extended with additional features to do more than just compile and test.
+
+For some reason, I had some problems with this. I started with the rake project home page, which showed a pretty simple example. Just type rake. I tried that and quickly realized I need to install rake. So I installed by doing the following:
+	rake install --remote rake
+After a few moments, rake was installed. I quickly verified this by simply typing rake at command line. Next was to create the build script. I stumbled a bit here because I had trouble finding samples. Again, I started with the rake home page (http://rake.rubyforge.org/), where they show an example. So I typed the following into my text editor, verbatim from the site:
+
+	task :default => [:test]
+
+	  task :test do
+	    ruby "test/AllTests.rb"
+	  end
+	
+Ok. That seemed pretty simple. My next stumbling block was what to name the file. After googling for a while, I noticed that if I type rake at command prompt, it told me what the file name should be. Cool. I named the file rakefile.rb. I also realize that I can specify the filename at command line when I invoke rake.
+
+Needless to say, the file didn't work for me. I hit a LoadError due to my directory structure. I put the rakefile in the project directory, but need to execute tests in the test directory where the tests verify the code in the app directory. So I bummed around for a while getting frustrated before running across Andy Glover's blog (http://thediscoblog.com/2006/09/09/ruby-test-categorization-techniques/) talking about test categorization. In it, he also talks a bit about directory structure. So I modified my rakefile.rb to mimic Andy's rake file. Like this:
+
+require 'rake/testtask'
+
+task :default => [:unit_test]
+
+Rake::TestTask.new(:unit_test) do | tsk |
+ tsk.test_files = "AllTests.rb"
+end
+
+I really felt like I was on the right path. But I still got the LoadError. I knew I could invoke the suite from command line, so I figured once I found a way to specify the loadpath in my rakefile, I'd be good to go. Turns out I was right. I stumbled across the Rake TestTask at (http://rake.rubyforge.org/classes/Rake/TestTask.html) and here found a libs attribute. Boom. I modified the file to look like the following, and I was up and running with Rake.
+
+require 'rake'
+require 'rake/testtask'
+
+task :default => [:unit_test]
+
+Rake::TestTask.new(:unit_test) do | tsk |
+ tsk.libs << "./app;./test"
+ tsk.test_files = "AllTests.rb"
+end
+
+It'll be interesting to see how I grow the rakefile as I move forward with deploying the calculator as a service...the next step as part of my Calculator Kata.

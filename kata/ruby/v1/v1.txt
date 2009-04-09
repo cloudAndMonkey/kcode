@@ -1,0 +1,4 @@
+So let's get started. The first thing I want to do is create simple application that calculates the monthly payment for a loan based on fixed rate, fixed term, and initial balance. This is easy to do using the following formula:
+pow = (1 + rate)^nper
+
+presentValue * pow * rate / pow
