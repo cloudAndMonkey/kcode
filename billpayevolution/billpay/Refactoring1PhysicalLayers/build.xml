@@ -6,6 +6,7 @@
 	<property name="bindist" location="${basedir}/bin"/>
 	<property name="deploy" location="${basedir}/deploy"/>
 	<property name="lib" location="${basedir}/WEB-INF/lib"/>
+	<property name="buildlib" location="${basedir}/buildlib"/>
 	<property name="version" value="1.0"/>
 	
 	<path id="project.class.path">
@@ -13,6 +14,7 @@
 		<pathelement path="${testsrc}"/>
 		<pathelement location="${lib}/struts.jar"/>
 		<pathelement location="${lib}/servlet-api.jar"/>
+		<pathelement location="${buildlib}/junit.jar"/>
 	</path>
 	
 	<target name="clean" description="clean up">
@@ -46,6 +48,7 @@
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/test.jar"/>
 				<pathelement path="${bindist}/bill.jar"/>
+				<pathelement path="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.bill.test.AllTests" outfile="junitresults">
 				<formatter type="plain"/>
