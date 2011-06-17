@@ -22,7 +22,7 @@ public class AuditFacade2Test extends TestCase
 		BigDecimal amount = a1.audit(new Auditable() {
 			public BigDecimal getAmount() { return new BigDecimal("100.00"); };
 		});
-		assertEquals(new BigDecimal("85.00"), amount);
-		//assertEquals(new BigDecimal("90.00"), amount);
+		//assertEquals(new BigDecimal("85.00"), amount);
+		assertEquals(new BigDecimal("90.00"), amount);
 	}
 }

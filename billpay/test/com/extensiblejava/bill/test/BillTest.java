@@ -81,8 +81,8 @@ public class BillTest extends TestCase {
 		});
 		bill.audit(new AuditFacade2());
 		BigDecimal auditedAmount = bill.getAuditedAmount();
-		//assertEquals(new BigDecimal("21.25"),auditedAmount);
-		assertEquals(new BigDecimal("22.50"),auditedAmount);
+		assertEquals(new BigDecimal("21.25"),auditedAmount);
+		//assertEquals(new BigDecimal("22.50"),auditedAmount);
 	}
 
 	//Here, I'm no longer testing the financial piece. That's done in the financial test cases. Instead,
