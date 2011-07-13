@@ -9,6 +9,7 @@
 	<property name="bindist" location="${basedir}/bin"/>
 	<property name="deploy" location="${basedir}/deploy"/>
 	<property name="lib" location="${basedir}/WEB-INF/lib"/>
+	<property name="buildlib" location="${basedir}/buildlib"/>
 	<property name="version" value="1.0"/>
 	
 	<path id="project.class.path">
@@ -16,6 +17,7 @@
 		<pathelement path="${testsrc}"/>
 		<pathelement location="${lib}/struts.jar"/>
 		<pathelement location="${lib}/servlet-api.jar"/>
+		<pathelement location="${buildlib}/junit.jar"/>
 	</path>
 	
 	<target name="clean" description="clean up">
@@ -92,6 +94,7 @@
 				<pathelement path="${buildsrc}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit1.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/audit1test.jar" basedir="${build}"/>
@@ -100,6 +103,7 @@
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement path="${bindist}/audit1.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.audit1.test.AllTests" outfile="audit1test">
 				<formatter type="plain"/>
@@ -145,6 +149,7 @@
 				<pathelement path="${buildsrc}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit2.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/audit2test.jar" basedir="${build}"/>
@@ -153,6 +158,7 @@
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/auditspec.jar"/>
 				<pathelement path="${bindist}/audit2.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.audit2.test.AllTests" outfile="audit2test">
 				<formatter type="plain"/>
@@ -195,6 +201,7 @@
 			<classpath>
 				<pathelement path="${buildsrc}"/>
 				<pathelement location="${bindist}/financial.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/financialtest.jar" basedir="${build}"/>
@@ -202,6 +209,7 @@
 			<classpath>
 				<pathelement path="${build}"/>
 				<pathelement path="${bindist}/financial.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.financial.test.AllTests" outfile="financialtest">
 				<formatter type="plain"/>
@@ -254,6 +262,7 @@
 				<pathelement path="${bindist}/audit2.jar"/>
 				<pathelement location="${bindist}/financial.jar"/>
 				<pathelement location="${bindist}/bill.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/billtest.jar" basedir="${build}" excludes="com/extensiblejava/audit/** com/extensiblejava/financial/**"/>
@@ -266,6 +275,7 @@
 				<pathelement path="${bindist}/audit2.jar"/>
 				<pathelement path="${bindist}/financial.jar"/> 
 				<pathelement path="${bindist}/bill.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.bill.test.AllTests" outfile="billtest">
 				<formatter type="plain"/>
@@ -322,6 +332,7 @@
 				<pathelement location="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit1.jar"/>
 				<pathelement location="${bindist}/audit2.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 		</javac>
 		<jar jarfile="${bindist}/billpaytest.jar" basedir="${build}" excludes="com/extensiblejava/audit/** com/extensiblejava/financial/**"/>
@@ -336,6 +347,7 @@
 				<pathelement location="${bindist}/auditspec.jar"/>
 				<pathelement location="${bindist}/audit1.jar"/>
 				<pathelement location="${bindist}/audit2.jar"/>
+				<pathelement location="${buildlib}/junit.jar"/>
 			</classpath>
 			<test name="com.extensiblejava.mediator.test.AllTests" outfile="billpaytest">
 				<formatter type="plain"/>
