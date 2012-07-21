@@ -418,7 +418,7 @@
 			style="${buildlib}/jaranalyzer2dot.xsl">	
 		</style>
 		
-		<exec executable="/Applications/Graphviz.app/Contents/MacOS/dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/alldependencies.grph -o ./buildstats/alldependencies.png"/></exec>
+		<exec executable="dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/alldependencies.grph -o ./buildstats/alldependencies.png"/></exec>
 
 	</target>
 	
@@ -470,7 +470,7 @@
 			style="${buildlib}/jaranalyzer2dot.xsl">	
 		</style>
 				
-		<exec executable="/Applications/Graphviz.app/Contents/MacOS/dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies.grph -o ./buildstats/appdependencies.png"/></exec>
+		<exec executable="dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies.grph -o ./buildstats/appdependencies.png"/></exec>
 
 	</target> 
 	
