@@ -545,7 +545,7 @@
         <jaranalyzer srcdir="${binosgi}" destfile="${buildstats}/appdependencies-old.grph" 
 				summaryclass="com.kirkk.analyzer.textui.DOTSummary" />
 				
-		<exec executable="/Applications/Graphviz.app/Contents/MacOS/dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies-old.grph -o ./buildstats/appdependencies-old.png"/></exec>
+		<exec executable="dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies-old.grph -o ./buildstats/appdependencies-old.png"/></exec>
 
 	</target>
 	
@@ -580,7 +580,7 @@
 		</style>
 
 				
-		<exec executable="/Applications/Graphviz.app/Contents/MacOS/dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies-new.grph -o ./buildstats/appdependencies-new.png"/></exec>
+		<exec executable="dot" ><arg line="-Tpng -Nshape=box -Nfontsize=30 -Nwidth=1.5 -Nheight=1.25 ./buildstats/appdependencies-new.grph -o ./buildstats/appdependencies-new.png"/></exec>
 
 	</target>
 	
