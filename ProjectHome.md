@@ -1,0 +1,1 @@
+Sample code, including OSGi, simple reference architecture, and pattern implementations. Always including the build script, too. Just download and GO!
